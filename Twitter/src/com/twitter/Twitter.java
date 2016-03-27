@@ -2,9 +2,11 @@ package com.twitter;
 
 import java.util.LinkedList;
 import com.twitter.poruke.TwitterPoruka;
+
 /**
- * Klasa koja predstavlja Twitter. 
- * Svaki objekat ove klase ima listu objekata klase TwitterPoruka.
+ * Klasa koja predstavlja Twitter. Svaki objekat ove klase ima listu objekata
+ * klase TwitterPoruka.
+ * 
  * @author Mladen Lukic
  *
  */
@@ -16,6 +18,7 @@ public class Twitter {
 
 	/**
 	 * Metoda vraca sve poruke koje se nalaze u listi poruka.
+	 * 
 	 * @return poruke Lista poruka
 	 */
 	public LinkedList<TwitterPoruka> vratiSvePoruke() {
@@ -23,28 +26,34 @@ public class Twitter {
 	}
 
 	/**
-	 * Metoda kreira novi objekat klase TwitterPoruka,
-	 * popunjava atribute i postavlja na poslednje mesto u listi
-	 * @param korisnik Novi korisnik
-	 * @param poruka Nova poruka
+	 * Metoda kreira novi objekat klase TwitterPoruka, popunjava atribute i
+	 * postavlja na poslednje mesto u listi
+	 * 
+	 * @param korisnik
+	 *            Novi korisnik
+	 * @param poruka
+	 *            Nova poruka
 	 */
 	public void unesi(String korisnik, String poruka) {
 		// Pravi se nova poruka i puni podacima.
 		TwitterPoruka tp = new TwitterPoruka();
-		tp.setKorisnik("korisnik");
+		tp.setKorisnik(korisnik);
 		tp.setPoruka(poruka);
 		// Poruka se unosi u listu na kraj
 		poruke.addLast(tp);
 	}
 
 	/**
-	 * Metoda pretrazuje listu poruka na osnovu unetog taga,
-	 * puni novi niz sa objektima cije poruke 
-	 * sadrze uneti tag dok ne dodje do maxBroja, 
-	 * i onda kao povratnu vrednost vraca taj novi niz.
-	 * @param maxBroj Predstavlja maksimalan broj objekata u nizu
-	 * @param tag Predstavlja kriterijum na osnovu kog pretrazujemo listu
-	 * @return rezultat Niz koji sadrzi sve objekte cije poruke sadrze kriterijum tag
+	 * Metoda pretrazuje listu poruka na osnovu unetog taga, puni novi niz sa
+	 * objektima cije poruke sadrze uneti tag dok ne dodje do maxBroja, i onda
+	 * kao povratnu vrednost vraca taj novi niz.
+	 * 
+	 * @param maxBroj
+	 *            Predstavlja maksimalan broj objekata u nizu
+	 * @param tag
+	 *            Predstavlja kriterijum na osnovu kog pretrazujemo listu
+	 * @return rezultat Niz koji sadrzi sve objekte cije poruke sadrze
+	 *         kriterijum tag
 	 */
 	public TwitterPoruka[] vratiPoruke(int maxBroj, String tag) {
 		if (tag == null || tag == "")
@@ -62,12 +71,13 @@ public class Twitter {
 		// ona se upisuje u niz. Ako je prekoracen maxBroj,pretraga
 		// se prekida.
 		for (int i = 0; i < poruke.size(); i++)
-			if (poruke.get(i).getPoruka().indexOf(tag) != -1)
+			if (poruke.get(i).getPoruka().indexOf(tag) != -1) {
 				if (brojac < maxBroj) {
-					rezultat[brojac + 1] = poruke.get(i);
+					rezultat[brojac] = poruke.get(i);
 					brojac++;
 				} else
 					break;
+			}
 		return rezultat;
 	}
 }
