@@ -1,3 +1,5 @@
+package com.twitter;
+
 import static org.junit.Assert.*;
 
 import java.util.LinkedList;
@@ -46,7 +48,7 @@ public class TwitterTest {
 	}
 
 	@Test
-	public void testUnesi() {
+	public void testUnesiSveOk() {
 		t.unesi("Mladen", "Nova poruka");
 
 		LinkedList<TwitterPoruka> provera = new LinkedList<TwitterPoruka>();
@@ -60,9 +62,19 @@ public class TwitterTest {
 
 		assertEquals(provera, t.vratiSvePoruke());
 	}
+	
+	@Test(expected = java.lang.RuntimeException.class) 
+	public void testUnesiNull() {
+		t.unesi(null, null);
+	}
+	
+	@Test(expected = java.lang.RuntimeException.class) 
+	public void testUnesiPrazanString() {
+		t.unesi("", "");
+	}
 
 	@Test
-	public void testVratiPoruke() {
+	public void testVratiPorukeSveOk() {
 		t.unesi("Mladen", "Nova poruka 2");
 		t.unesi("Mladen", "Tag Nova poruka");
 
@@ -79,5 +91,14 @@ public class TwitterTest {
 
 		assertArrayEquals(provera, original);
 	}
-
+	
+	@Test(expected = java.lang.RuntimeException.class) 
+	public void testVratiPorukeNull() {
+		t.vratiPoruke(2, null);
+	}
+	
+	@Test(expected = java.lang.RuntimeException.class) 
+	public void testVratiPorukePrazanString() {
+		t.vratiPoruke(2, "");
+	}
 }

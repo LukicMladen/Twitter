@@ -53,7 +53,12 @@ public class Twitter {
 	 * @param tag
 	 *            Predstavlja kriterijum na osnovu kog pretrazujemo listu
 	 * @return rezultat Niz koji sadrzi sve objekte cije poruke sadrze
-	 *         kriterijum tag
+	 *         kriterijum tag        
+	 * @throws java.lang.RuntimeException ako je uneti tag:
+	 * <ul>
+	 * <li>null</li> 
+	 * <li>prazan String</li>
+	 * </ul> 
 	 */
 	public TwitterPoruka[] vratiPoruke(int maxBroj, String tag) {
 		if (tag == null || tag == "")
